@@ -11,18 +11,9 @@
 
 
 / {
-        behaviors {
-                sleep_hold: sleep_hold {
-                        compatible = "zmk,behavior-hold-tap";
-                        label = "SLEEP_HOLD";
-                        #binding-cells = <2>;
-                        tapping-term-ms = <2000>;
-                        quick-tap-ms = <0>;
-                        flavor = "tap-preferred";
-                        bindings = <&soft_off>, <&kp>;
-                };
+        &soft_off {
+                hold-time-ms = <5000>; // Only turn off it the key is held for 5 seconds or longer.
         };
-        
         keymap {
                 compatible = "zmk,keymap";
 
@@ -37,7 +28,7 @@
                 lower_layer {
                         bindings = <
    &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &trans &trans &sleep_hold 0 S &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
+   &trans &trans &soft_off &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
    &trans  &ext_power EP_ON       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
                                     &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
                         >;
